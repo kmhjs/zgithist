@@ -1,0 +1,1 @@
+export ZGITHISTORY_DIR=$HOME/.zgithistory
