@@ -9,6 +9,24 @@ function __is_git_repo()
     }
 }
 
+function __zgithistory_preexec()
+{
+    # This method will save repository history
+    function _save_repo_history()
+    {
+        [ -n "$(__is_git_repo)" ] && {
+            __write_reporsitory_history $1
+        }
+    }
+
+    # execute
+    # ARGV is cmd executed
+    _save_repo_history $1
+
+    # clean
+    unfunction _save_repo_history
+}
+
 function __get_repository_name()
 {
     local repo_root repo_name tmp_str
@@ -19,7 +37,7 @@ function __get_repository_name()
 
     while [ -z "$tmp_str" ]; do
         [[ "${repo_root}" == "init" ]] && {
-            repo_root="";
+            repo_root="./";
         } || {
             repo_root="${repo_root}../";
         }
@@ -83,7 +101,7 @@ function __show_repository_history()
         log_file_path=$(__get_repository_log_file_path)
 
         [ -e $log_file_path ] && {
-            cat $log_file_path | while read s; do
+            cat $log_file_path | tail -n 10 | while read s; do
                 date_sec=$(echo $s | cut -d':' -f1)
                 cmd_b64=$(echo $s | cut -d':' -f2)
 
