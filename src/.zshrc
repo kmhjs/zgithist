@@ -1,18 +1,8 @@
-# source <somewhere>/zgithistory.zsh
+# Source script
+#source <somewhere>/zgithistory.zsh
 
-preexec() {
-    # This method will save repository history
-    function _save_repo_history()
-    {
-        [ -n "$(__is_git_repo)" ] && {
-            __write_reporsitory_history $1
-        }
-    }
+# Prepare for using add-zsh-hook
+#builtin autoload -U add-zsh-hook
 
-    # execute
-    # ARGV is cmd executed
-    _save_repo_history $1
-
-    # clean
-    unfunction _save_repo_history
-}
+# Add hook to preexec
+add-zsh-hook preexec __zgithistory_preexec
