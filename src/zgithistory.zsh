@@ -79,11 +79,23 @@ function __write_reporsitory_history()
 
     # Check ignore list
     [[ "$(echo $arguments | cut -d ' ' -f 1)" != "repository_history" ]] && {
+        # Check history file directory path configration
+        [[ "${ZGITHISTORY_DIR}" == "" ]] && {
+            echo "[ERROR] (zgithistory) History path is not configured"
+            return
+        }
+
         [ ! -d $ZGITHISTORY_DIR ] && mkdir $ZGITHISTORY_DIR
 
         arguments_b64=$(echo $arguments | base64)
 
         log_file_path=$(__get_repository_log_file_path)
+
+        # Check history file path
+        [[ "${log_file_path}" == "" ]] && {
+            echo "[ERROR] (zgithistory) Log file not found or could not be written"
+            return
+        }
 
         [ ! -e $log_file_path ] && {
             touch $log_file_path
