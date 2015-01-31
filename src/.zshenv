@@ -1,1 +1,2 @@
 export ZGITHISTORY_DIR=$HOME/.zgithistory
+export ZGITHISTORY_MAXHIST=1000
