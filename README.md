@@ -22,6 +22,7 @@ When you want to see history, type `repository_history`.
 ## Note
 
 This script will save history data in `$ZGITHISTORY_DIR` with base64 coded repository name. If there are 2 or more same name repositories, they will be treated as same repository.
+If you want to limit maximum line in history file, please set variable `$ZGITHISTORY_MAXHIST` in .zshenv by following sample .zshenv.
 
 ## Todo
 
