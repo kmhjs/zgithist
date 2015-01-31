@@ -90,6 +90,14 @@ function __write_reporsitory_history()
         }
 
         echo "$(date +%s):${arguments_b64}" >> $log_file_path
+
+        # Limit history file with maximum lines value if variable was configured
+        [ -n "${ZGITHISTORY_MAXHIST}" ] && {
+            cat $log_file_path               > /tmp/zgithist_${log_file_path:t}
+            cat /tmp/zgithist_${log_file_path:t} | \
+                tail -n $ZGITHISTORY_MAXHIST > $log_file_path
+            rm -f /tmp/zgithist_${log_file_path:t}
+        }
     }
 }
 
