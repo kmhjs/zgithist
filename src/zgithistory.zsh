@@ -87,7 +87,7 @@ function __write_reporsitory_history()
 
         [ ! -d $ZGITHISTORY_DIR ] && mkdir $ZGITHISTORY_DIR
 
-        arguments_b64=$(echo $arguments | base64)
+        arguments_b64=$(echo $arguments | base64 | tr -d '\n')
 
         log_file_path=$(__get_repository_log_file_path)
 
