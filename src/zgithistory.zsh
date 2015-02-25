@@ -122,7 +122,7 @@ function __show_repository_history()
         date_sec=$1
 
         [ -x "`which date`" ] && {
-            [ -n "$(date --version | grep 'GNU')" ] && {
+            [ -n "$(man date | grep -wo 'GNU')" ] && {
                 date --date "@$date_sec"
             } || {
                 date -r "$date_sec"
