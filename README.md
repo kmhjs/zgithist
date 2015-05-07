@@ -11,7 +11,7 @@ Zsh - Git repository history
 ## Usage
 
 This plugin automatically collects command history in every git repository.
-When you want to see history, type `repository_history`.
+When you want to see history, type `zgithist`.
 
 ## Installation
 

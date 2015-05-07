@@ -161,7 +161,9 @@ function __show_repository_history()
 }
 
 # External interface
-function repository_history()
+function zgithist()
 {
+    [[ $1 == '--load' ]] && return
+
     __show_repository_history
 }
